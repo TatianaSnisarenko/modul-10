@@ -1,11 +1,13 @@
 package hw_10;
 
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import static java.util.stream.Collectors.toList;
 
 public class HomeWorkMethods {
     //Task 1
@@ -21,7 +23,7 @@ public class HomeWorkMethods {
         return list.stream()
                 .map(e -> e.toUpperCase())
                 .sorted(Comparator.reverseOrder())
-                .collect(Collectors.toList());
+                .collect(toList());
     }
 
     //Task 3
@@ -56,15 +58,11 @@ public class HomeWorkMethods {
 
     //Task 5
     public static <T> Stream<T> zip(Stream<T> first, Stream<T> second) {
-        List<T> listFirst = first.collect(Collectors.toList());
-        List<T> listSecond = second.collect(Collectors.toList());
-        List<T> result = new ArrayList<>();
-        int minLength = Math.min(listFirst.size(), listSecond.size());
-
-        for (int i = 0; i < minLength; i++) {
-            result.add(listFirst.get(i));
-            result.add(listSecond.get(i));
-        }
-        return result.stream();
+        return Stream.concat(first, second).collect(Collectors.collectingAndThen(
+                toList(),
+                list -> {
+                    Collections.shuffle(list);
+                    return list.stream();
+                }));
     }
 }

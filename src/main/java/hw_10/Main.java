@@ -3,7 +3,7 @@ package hw_10;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,13 +32,7 @@ public class Main {
 
         System.out.println("-----------------------------");
 
-        System.out.println("Testing task 5: shuffling 2 streams while the least has next element for ints:\n"
-                + HomeWorkMethods.zip(Stream.of(1, 2, 3, 4, 5), Stream.of(21, 22, 23)).collect(Collectors.toList()));
-
-        System.out.println("-----------------------------");
-
-        System.out.println("Testing task 5: shuffling 2 streams while the least has next element for Strings:\n"
-                + HomeWorkMethods.zip(Stream.of("1", "2", "3", "4", "5"), Stream.of("21", "22", "23", "24", "25", "26", "27")).collect(Collectors.toList()));
-
+        System.out.println("Testing task 5: shuffling 2 streams while the least has next element for ints(creting intstreams.boxed):\n"
+                + HomeWorkMethods.zip(IntStream.range(31, 45).boxed(), IntStream.range(21, 31).boxed()).collect(Collectors.toList()));
     }
 }
