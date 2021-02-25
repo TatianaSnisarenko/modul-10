@@ -27,12 +27,11 @@ public class HomeWorkMethods {
     }
 
     //Task 3
+
     public static String convertStringArrayToStringOfSortedInts(String[] strings) {
         return Arrays.stream(strings)
-                .flatMap(s -> Arrays.stream(s.split(", ").clone()))
-                .mapToInt(Integer::parseInt)
-                .sorted()
-                .mapToObj(String::valueOf)
+                .flatMap(s -> Arrays.stream(s.split(", ")))
+                .sorted(Comparator.comparingInt(Integer::parseInt))
                 .collect(Collectors.joining(", "));
     }
 
