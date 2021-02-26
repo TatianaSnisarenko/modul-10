@@ -13,7 +13,7 @@ public class HomeWorkMethods {
     //Task 1
     public static String convertListOfNamestoStringWithOddIndex(List<String> names) {
         return names.stream()
-                .map(name -> "" + (names.indexOf(name)) + ". " + name)
+                .map(name -> (names.indexOf(name)) + ". " + name)
                 .filter(name -> Integer.parseInt(name.substring(0, 1)) % 2 == 1)
                 .collect(Collectors.joining(", "));
     }
@@ -45,14 +45,10 @@ public class HomeWorkMethods {
     }
 
     private static boolean checkParameters(long a, long c, long m, long seed) {
-        if (m >= 2
+        return (m >= 2
                 && a >= 0 && a < m
                 && c >= 0 && c < m
-                && seed >= 0 && seed < m) {
-            return true;
-        } else {
-            return false;
-        }
+                && seed >= 0 && seed < m);
     }
 
     //Task 5
